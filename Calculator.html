@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+
+<style>
+body {
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.calc {
+  width: 260px;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#screen {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  text-align: right;
+  font-size: 18px;
+}
+
+button {
+  width: 55px;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  background: #334155;
+  color: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #38bdf8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calc">
+  <input id="screen" disabled>
+
+  <div>
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="press('+')">+</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('-')">-</button>
+
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('*')">*</button>
+
+    <button onclick="clearScreen()">C</button>
+    <button onclick="press('0')">0</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="press('/')">/</button>
+
+    <button onclick="deleteLast()">DEL</button>
+  </div>
+</div>
+
+<script>
+function press(val) {
+  document.getElementById("screen").value += val;
+}
+
+function clearScreen() {
+  document.getElementById("screen").value = "";
+}
+
+function deleteLast() {
+  let screen = document.getElementById("screen");
+  screen.value = screen.value.slice(0, -1);
+}
+
+function calculate() {
+  try {
+    let result = eval(document.getElementById("screen").value);
+    document.getElementById("screen").value = result;
+  } catch {
+    alert("خطأ!");
+  }
+}
+</script>
+
+</body>
+</html>
